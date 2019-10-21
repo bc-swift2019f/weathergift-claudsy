@@ -15,6 +15,8 @@
 		A62B0E6C2357BD8D0083CEC7 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B0E6B2357BD8D0083CEC7 /* DetailVC.swift */; };
 		A62B0E6E2357D8380083CEC7 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B0E6D2357D8380083CEC7 /* ListVC.swift */; };
 		A62B0E702357DA8A0083CEC7 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B0E6F2357DA8A0083CEC7 /* PageVC.swift */; };
+		A62B0E72235D5E0A0083CEC7 /* WeatherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B0E71235D5E0A0083CEC7 /* WeatherLocation.swift */; };
+		A62B0E74235D679F0083CEC7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B0E73235D679F0083CEC7 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		A62B0E6B2357BD8D0083CEC7 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		A62B0E6D2357D8380083CEC7 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		A62B0E6F2357DA8A0083CEC7 /* PageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
+		A62B0E71235D5E0A0083CEC7 /* WeatherLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocation.swift; sourceTree = "<group>"; };
+		A62B0E73235D679F0083CEC7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AABA20087102F779B0A9B623 /* Pods_Weather_Gift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Gift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,8 +78,10 @@
 			isa = PBXGroup;
 			children = (
 				A62B0E592357BC480083CEC7 /* AppDelegate.swift */,
+				A62B0E71235D5E0A0083CEC7 /* WeatherLocation.swift */,
 				A62B0E6F2357DA8A0083CEC7 /* PageVC.swift */,
 				A62B0E6B2357BD8D0083CEC7 /* DetailVC.swift */,
+				A62B0E73235D679F0083CEC7 /* Constants.swift */,
 				A62B0E6D2357D8380083CEC7 /* ListVC.swift */,
 				A62B0E5D2357BC480083CEC7 /* Main.storyboard */,
 				A62B0E602357BC4D0083CEC7 /* Assets.xcassets */,
@@ -227,10 +233,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A62B0E72235D5E0A0083CEC7 /* WeatherLocation.swift in Sources */,
 				A62B0E6E2357D8380083CEC7 /* ListVC.swift in Sources */,
 				A62B0E702357DA8A0083CEC7 /* PageVC.swift in Sources */,
 				A62B0E5A2357BC480083CEC7 /* AppDelegate.swift in Sources */,
 				A62B0E6C2357BD8D0083CEC7 /* DetailVC.swift in Sources */,
+				A62B0E74235D679F0083CEC7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

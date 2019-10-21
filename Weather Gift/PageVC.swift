@@ -10,11 +10,8 @@ import UIKit
 
 class PageVC: UIPageViewController {
 
-    var currentPage=0
-    var locationsArray=["Local City",
-                        "Syndney, Australia",
-                        "Accra, Ghana",
-                        "Uglich, Russia"]
+    var currentPage = 0
+    var locationsArray = [WeatherLocation]()
     var pageControl: UIPageControl!
     var barButtonWidth: CGFloat = 44
     var barButtonHeight: CGFloat = 44
@@ -22,9 +19,12 @@ class PageVC: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         delegate = self
         dataSource = self
+        
+        var newLocation = WeatherLocation()
+        newLocation.name = " "
+        locationsArray.append(newLocation)
         
         setViewControllers([createDetailVC(forPage: 0)], direction: .forward, animated: false, completion: nil)
     }
@@ -42,7 +42,8 @@ class PageVC: UIPageViewController {
         let safeHeight=view.frame.height-view.safeAreaInsets.bottom
         pageControl=UIPageControl(frame: CGRect(x: (view.frame.width-pageControlWidth)/2, y: safeHeight-pageControlHeight, width: pageControlWidth, height: pageControlHeight))
         pageControl.pageIndicatorTintColor=UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor=UIColor.black
+        pageControl.backgroundColor = UIColor.white
+        pageControl.currentPageIndicatorTintColor = UIColor.black
         pageControl.numberOfPages=locationsArray.count
         pageControl.currentPage=currentPage
         view.addSubview(pageControl)
@@ -65,6 +66,8 @@ class PageVC: UIPageViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let currentViewController=self.viewControllers?[0] as? DetailVC else {return}
+        locationsArray = currentViewController.locationsArray
         if segue.identifier == "ToListVC"{
             let destination = segue.destination as! ListVC
             destination.locationsArray = locationsArray
@@ -120,4 +123,15 @@ extension PageVC: UIPageViewControllerDataSource,UIPageViewControllerDelegate{
             pageControl.currentPage = currentViewController.currentPage
         }
     }
+    
+    @objc func pageControlPressed(){
+        guard let currentViewController=self.viewControllers?[0] as? DetailVC else {return}
+        currentPage = currentViewController.currentPage
+        if pageControl.currentPage<currentPage{
+            setViewControllers([createDetailVC(forPage: pageControl.currentPage)],direction: .reverse, animated: true, completion: nil)
+        } else if pageControl.currentPage>currentPage{
+            setViewControllers([createDetailVC(forPage: pageControl.currentPage)], direction: .forward, animated: true, completion: nil)
+        }
+    }
+    
 }
