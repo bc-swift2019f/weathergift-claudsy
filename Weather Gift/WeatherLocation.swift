@@ -30,10 +30,14 @@ class WeatherLocation {
                 } else{
                     print("Could not return a temperature")
                 }
+                if let summary = json["daily"]["summary"].string { self.currentSummary = summary
+                } else {
+                    print("Could not return a summary")
+                }
                 if let icon = json["currently"]["icon"].string{
                     self.currentIcon = icon
                 } else{
-                    print("Could not return a summary")
+                    print("Could not return an icon")
                 }
             case .failure(let error):
                 print(error)

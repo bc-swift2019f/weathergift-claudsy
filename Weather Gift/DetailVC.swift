@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class DetailVC: UIViewController {
-
+    
     @IBOutlet weak var currentImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -27,9 +27,9 @@ class DetailVC: UIViewController {
         if currentPage != 0 {
             self.locationsArray[currentPage].getWeather {
                 self.updateUserInterface()
+            }
         }
     }
-}
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -68,7 +68,7 @@ extension DetailVC: CLLocationManagerDelegate{
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-       handleLocationAuthorizationStatus(status: status)
+        handleLocationAuthorizationStatus(status: status)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -94,4 +94,9 @@ extension DetailVC: CLLocationManagerDelegate{
             }
         })
     }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to get user location")
+    }
+    
 }
