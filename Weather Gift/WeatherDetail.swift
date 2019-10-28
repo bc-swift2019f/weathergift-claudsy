@@ -27,8 +27,6 @@ class WeatherDetail: WeatherLocation {
         var dailyIcon: String
     }
     
-    var name = ""
-    var coordinates = ""
     var currentTemp = "--"
     var currentSummary = ""
     var currentIcon = ""
@@ -39,7 +37,6 @@ class WeatherDetail: WeatherLocation {
     
     func getWeather(completed: @escaping() -> ()){
         let weatherURL = urlBase + urlAPIKey + coordinates
-        
         Alamofire.request(weatherURL).responseJSON{ response in
             switch response.result{
             case .success(let value):

@@ -41,7 +41,7 @@ class PageVC: UIPageViewController {
             return
         }
         let decoder = JSONDecoder()
-        if let locationsArray = try? decoder.decode(Array.self, from: locationsEncoded) as [WeatherLocation] {
+        if let locationsArray = try? decoder.decode(Array<WeatherLocation>.self, from: locationsEncoded) as [WeatherLocation] {
             self.locationsArray = locationsArray
         } else {
             print("ERROR: Couldn't decode data read from UserDefaults")

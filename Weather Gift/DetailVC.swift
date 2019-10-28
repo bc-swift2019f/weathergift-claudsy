@@ -55,9 +55,8 @@ class DetailVC: UIViewController {
     }
     
     func updateUserInterface(){
-        let location = locationDetail
         locationLabel.text = locationDetail.name
-        let dateString = locationDetail.currentTime.format(timeZone: location.timeZone, dateFormatter: dateFormatter)
+        let dateString = locationDetail.currentTime.format(timeZone: locationDetail.timeZone, dateFormatter: dateFormatter)
         dateLabel.text = locationDetail.coordinates
         temperatureLabel.text = locationDetail.currentTemp
         summaryLabel.text = locationDetail.currentSummary
