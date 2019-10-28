@@ -22,9 +22,9 @@ class PageVC: UIPageViewController {
         delegate = self
         dataSource = self
         
-        var newLocation = WeatherLocation()
-        newLocation.name = " "
+        var newLocation = WeatherLocation(name: "", coordinates: "")
         locationsArray.append(newLocation)
+        loadLocations()
         
         setViewControllers([createDetailVC(forPage: 0)], direction: .forward, animated: false, completion: nil)
     }
@@ -35,24 +35,37 @@ class PageVC: UIPageViewController {
         configureListButton()
     }
     
+    func loadLocations(){
+        guard let locationsEncoded = UserDefaults.standard.value(forKey: "locationsArray") as? Data else{
+            print("could not load locationsArray data from userDefaults")
+            return
+        }
+        let decoder = JSONDecoder()
+        if let locationsArray = try? decoder.decode(Array.self, from: locationsEncoded) as [WeatherLocation] {
+            self.locationsArray = locationsArray
+        } else {
+            print("ERROR: Couldn't decode data read from UserDefaults")
+        }
+    }
+    
     //MARK - UI Configuration
     func configurePageControl(){
-        let pageControlHeight: CGFloat=barButtonHeight
-        let pageControlWidth: CGFloat=view.frame.width-(barButtonWidth*2)
-        let safeHeight=view.frame.height-view.safeAreaInsets.bottom
-        pageControl=UIPageControl(frame: CGRect(x: (view.frame.width-pageControlWidth)/2, y: safeHeight-pageControlHeight, width: pageControlWidth, height: pageControlHeight))
-        pageControl.pageIndicatorTintColor=UIColor.lightGray
+        let pageControlHeight: CGFloat = barButtonHeight
+        let pageControlWidth: CGFloat = view.frame.width-(barButtonWidth*2)
+        let safeHeight = view.frame.height-view.safeAreaInsets.bottom
+        pageControl = UIPageControl(frame: CGRect(x: (view.frame.width-pageControlWidth)/2, y: safeHeight-pageControlHeight, width: pageControlWidth, height: pageControlHeight))
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.backgroundColor = UIColor.white
         pageControl.currentPageIndicatorTintColor = UIColor.black
-        pageControl.numberOfPages=locationsArray.count
-        pageControl.currentPage=currentPage
+        pageControl.numberOfPages = locationsArray.count
+        pageControl.currentPage = currentPage
         view.addSubview(pageControl)
     }
     
     func configureListButton(){
         let safeHeight=view.frame.height-view.safeAreaInsets.bottom
         
-        listButton=UIButton(frame: CGRect(x: view.frame.width-barButtonWidth, y: safeHeight-barButtonHeight, width: barButtonWidth, height: barButtonHeight))
+        listButton = UIButton(frame: CGRect(x: view.frame.width-barButtonWidth, y: safeHeight-barButtonHeight, width: barButtonWidth, height: barButtonHeight))
         
         listButton.setImage(UIImage(named: "listbutton"), for: .normal)
         listButton.setImage(UIImage(named: "listbutton-highlighted"), for: .highlighted)
